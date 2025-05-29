@@ -1,0 +1,34 @@
+<!-- src/main/resources/templates/add.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Employee</title>
+</head>
+<body>
+    <h2>Add Employee</h2>
+    <div th:if="${error}" style="color:red;">Error: <span th:text="${error}"></span></div>
+
+    <form th:action="@{/employee/add}" method="post" enctype="multipart/form-data" th:object="${employee}">
+        <label>First Name: <input type="text" th:field="*{firstName}" required></label><br>
+        <label>Last Name: <input type="text" th:field="*{lastName}" required></label><br>
+        <label>Middle Name: <input type="text" th:field="*{middleName}"></label><br>
+        <label>Date of Birth: <input type="date" th:field="*{dob}" required></label><br>
+
+        <label>Department:
+            <select th:field="*{department}">
+                <option value="Engineering">Engineering</option>
+                <option value="Support">Support</option>
+                <option value="HR">HR</option>
+                <option value="Finance">Finance</option>
+            </select>
+        </label><br>
+
+        <label>Salary: <input type="number" th:field="*{salary}" required></label><br>
+        <label>Permanent Address: <input type="text" th:field="*{permanentAddress}" required></label><br>
+        <label>Current Address: <input type="text" th:field="*{currentAddress}" required></label><br>
+
+        <label>ID Proof (PDF): <input type="file" name="file" accept=".pdf" required></label><br>
+        <button type="submit">Add Employee</button>
+    </form>
+</body>
+</html>
